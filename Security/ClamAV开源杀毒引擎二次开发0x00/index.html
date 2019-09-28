@@ -14,7 +14,7 @@
   <meta name="description" content>
   <meta name="author" content="John Doe">
   <meta name="keywords" content>
-  <title>Archive ~ Hexo</title>
+  <title>ClamAV开源杀毒引擎二次开发0x00 ~ Hexo</title>
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
@@ -30,7 +30,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -101,6 +101,9 @@
             </span>
 
             
+              <br>
+              <p>Saturday, September 28th 2019, 3:10 pm</p>
+            
           </div>
 
           
@@ -111,35 +114,85 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">1 posts in total.</p>
-  <hr>
-  
-    
       
-      <p class="h5">2019</p>
-    
-    <a href="/Security/ClamAV开源杀毒引擎二次开发0x00/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">ClamAV开源杀毒引擎二次开发0x00</span>
-      <span style="float: right;">09-28</span>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto">
+          <div class="markdown-body">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近来有想法研究下windows下的杀毒引擎，一来是为了之后的工作中大概率会接触一些，二来也是因为自己兴趣所向。接下来发布的“基于ClamAV开源杀毒引擎二次开发”文章都是为研究该开源杀毒引擎编译/调用/工作方式所做的笔记，其中所述的方式方法不一定正确，若有错误理解也请指正。</p>
+<p>首先为什么选择ClamAV这款杀毒引擎来学习呢？因为我就只找到了这么一个开源的，能在windows上用的…</p>
+<p>然后我看了官网上使用手册中的介绍，功能还是相当强大的，不逊于一般的杀毒引擎。</p>
+<h1 id="ClamAV®-Introduction-简介"><a href="#ClamAV®-Introduction-简介" class="headerlink" title="ClamAV®  Introduction/简介"></a>ClamAV®  Introduction/简介</h1><p>ClamAV® is an open source antivirus engine for detecting trojans, viruses, malware &amp; other malicious threats.</p>
+<p>ClamAV® is an open source (GPL) anti-virus engine used in a variety of situations including email scanning, web scanning, and end point security. It provides a number of utilities including a flexible and scalable multi-threaded daemon, a command line scanner and an advanced tool for automatic database updates.</p>
+<h2 id="Features-特点"><a href="#Features-特点" class="headerlink" title="Features/特点"></a>Features/特点</h2><ul>
+<li>Command-line scanner</li>
+<li>Milter interface for sendmail</li>
+<li>Advanced database updater with support for scripted updates and digital signatures</li>
+<li>Virus database updated multiple times per day</li>
+<li>Built-in support for all standard mail file formats</li>
+<li>Built-in support for various archive formats, including Zip, RAR, Dmg, Tar, Gzip, Bzip2, OLE2, Cabinet, CHM, BinHex, SIS and others</li>
+<li>Built-in support for ELF executables and Portable Executable files packed with UPX, FSG, Petite, NsPack, wwpack32, MEW, Upack and obfuscated with SUE, Y0da Cryptor and others</li>
+<li>Built-in support for popular document formats including MS Office and MacOffice files, HTML, Flash, RTF and PDF</li>
+</ul>
+<p>上述简介都是ClamAV官网上对于ClamAV杀毒引擎的简介。<a href="https://www.clamav.net/" target="_blank" rel="noopener">https://www.clamav.net/</a></p>
+<p>简单的来说ClamAV是一款开源（GPLv2）的杀毒引擎，它的功能包含：邮件扫描/web扫描/针对性的端点安全；可检测超过一百万种病毒，蠕虫和木马，包括Microsoft Office宏病毒，移动恶意软件和其他威胁；支持好多好多文件类型；官网上开源工程里也提供了好几种基于该杀毒引擎开发的高级工具。我基本也是根据官网开发好的工具，调试他的源码，再根据文档说明，理解整个杀毒引擎的工作模式，然后自己写一些小工具。</p>
+<h2 id="Supported-platforms-支持平台"><a href="#Supported-platforms-支持平台" class="headerlink" title="Supported platforms/支持平台"></a>Supported platforms/支持平台</h2><p>GNU/Linux：Ubuntu/Debian/CentOS</p>
+<p>UNIX：Solaris/FreeBSD/macOS</p>
+<p>Windows：7/10</p>
+<p>我的话现在仅仅在windows上做二次开发，因为Linux下开发平时工作用的少，等要用了再学吧。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>第一篇文章就这样吧，拷贝了一下官网的说明，主要第一篇也是自己先熟悉熟悉Hexo建站+发文章，熟悉码字写文章啥的，下一篇就会开始记录ClamAV这个杀毒引擎在windows下怎么编译，然后官方的工具怎么用。要是有啥问题想联系我，可以点击主页里我的Github主页留言或者Github里我留了邮箱。</p>
 
-              </div>
-            </div>
+            <hr>
+          </div>
+          <br>
+          <div>
+            
+              <p>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/Security">Security</a>
+                  &nbsp;
+                
+              </p>
+            
+            <p>
+              <i class="iconfont icon-tag"></i>
+              
+                <a class="hover-with-bg" href="/tags/ClamAV">ClamAV</a>
+              
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -193,6 +246,11 @@
   <script src="/js/lazyload.js" ></script>
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
   <script src="/lib/prettify/prettify.min.js" ></script>
   <script>
@@ -208,7 +266,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Archive&nbsp;",
+        "ClamAV开源杀毒引擎二次开发0x00&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
