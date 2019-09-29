@@ -136,13 +136,26 @@
         
         <div class="index-excerpt" >
           <div class="index-text mb-1">0x00 前言从本文开始我会记录下研究ClamAV开源反病毒引擎的过程，会对整个源码的编译/使用/注释按个人理解做一些说明。学习过程必然是由浅入深的，可能有时前面文章中自己的看法并不正确，之后也会按自己的理解深入来修改之前的文章。
-0x01 环境准备ClamAV防病毒引擎编译环境：VS2017  Professional
+0x01 环境准备
+ClamAV防病毒引擎编译环境：VS2017  Professional
+
+
 二次开发环境：QT5.12.4 MSVC 2017 32/64bit
-引擎源码下载：clamav-0.101.4
+
+
+引擎源码下载：clamav-0.101.4 （哪边下都行）
+
+
 github仓库：https://github.com/Cisco-Talos/clamav-devel
+
+
 官网地址：https://www.clamav.net/downloads
-哪边下载都行
-0x02 目录结构</div>
+
+
+OpenSSL库
+
+0x02 目录结构首先我们要进入win32目录，找到VS工程配置文件打开，可以看到clamav 工程目录下有很多项目，目前我们只需要着重关注 libclamav ，这就是整个防病毒引擎库项目。我们还需重点关注的是clamscan clmad clamdscan 这三个项目。
+</div>
         </div>
       </a>
 
