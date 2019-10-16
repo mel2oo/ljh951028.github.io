@@ -8,7 +8,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/./apple-touch-icon.png">
-  <link rel="icon" type="image/png" href="/./favicon.png">
+  <link rel="icon" type="image/png" href="/img/brain.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="description" content>
@@ -127,6 +127,75 @@
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/设计模式/单例模式-Singleton-Pattem/" target="_self">
+          <img src="/img_post/hills.png" srcset="/img/loading.gif" alt="单例模式 Singleton Pattem" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/设计模式/单例模式-Singleton-Pattem/">
+        <p class="h4 index-header">单例模式 Singleton Pattem</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">简介在面向对象设计与开发中，往往会碰到一些特殊的情况，必须保证一个类在系统中只存在一个实例，这样才能确保它们的逻辑正确性。
+因此就产生了这种特殊的设计模式：单例模式。
+特点
+单例类只有一个实例。
+单例类必须自己创建自己的唯一实例。
+单例类必须给所有其他对象提供这一实例。
+
+应用场景
+Windows的Task Manager（任务管理器）就是很典型的单例模式，你不能同时打开两个任务管理器。Windows的回收站也是同理。
+应用程序的日志应用，一般都可以用单例模式实现，只能有一个实例去操作文件。
+读取配置文件，读取的配置项是公有的，一个地方读取了所有地方都能用，没有必要所有的地方都能读取一遍配置。
+数据库连接池，多线程的线程池。
+
+懒汉模式懒汉模式：单例类的静态局部变量只在第一次调用的时候被初始化一次，时间换空间，线程不安全
+class Singleton
+{
+public:
+
+    static Singleton&amp; GetInstance()
+    {
+        static Singleton instance;
+        return instance;
+ </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-10-16&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/C++">C++</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/Security/ClamAV开源杀毒引擎二次开发0x01/" target="_self">
+          <img src="/img_post/logan.jpg" srcset="/img/loading.gif" alt="ClamAV 开源杀毒引擎二次开发 0x01" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
       <a href="/Security/ClamAV开源杀毒引擎二次开发0x01/">
         <p class="h4 index-header">ClamAV 开源杀毒引擎二次开发 0x01</p>
@@ -182,6 +251,12 @@ OpenSSL库
 
   <div class="row mb-4 mx-auto">
     
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/Security/ClamAV开源杀毒引擎二次开发0x00/" target="_self">
+          <img src="/img_post/the_last_jedi.png" srcset="/img/loading.gif" alt="ClamAV 开源杀毒引擎二次开发 0x00" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/Security/ClamAV开源杀毒引擎二次开发0x00/">
