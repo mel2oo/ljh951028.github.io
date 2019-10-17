@@ -237,7 +237,7 @@ T* Singleton&lt;T&gt;::instance = nullptr;
 
 template &lt;typename T&gt;
 QMutex Singleton&lt;T&gt;::s_lock;</code></pre>
-<h1 id="双检查锁-Double-Check-Lock"><a href="#双检查锁-Double-Check-Lock" class="headerlink" title="双检查锁 Double-Check-Lock"></a>双检查锁 Double-Check-Lock</h1><p>多线程下使用单例类时，如下加锁并双重检查类是否已构造来访问。双重检查可以防止每次访问都加锁，代价大的问题，但因为编译器内存读写会乱序执行，这样的检查机制严格意义上也不是线程安全的。</p>
+<h1 id="双检查锁-DCL"><a href="#双检查锁-DCL" class="headerlink" title="双检查锁 DCL"></a>双检查锁 DCL</h1><p>多线程下使用单例类时，如下加锁并双重检查类是否已构造来访问。双重检查可以防止每次访问都加锁，代价大的问题，但因为编译器内存读写会乱序执行，这样的检查机制严格意义上也不是线程安全的。</p>
 <pre><code class="C++">#include &lt;QMutex&gt;
 
 template&lt;typename T&gt;
@@ -275,6 +275,47 @@ private:
 
 template &lt;typename T&gt;
 T* Singleton&lt;T&gt;::instance = nullptr;
+
+template &lt;typename T&gt;
+QMutex Singleton&lt;T&gt;::s_lock;</code></pre>
+<h1 id="原子指针-DCL安全"><a href="#原子指针-DCL安全" class="headerlink" title="原子指针 DCL安全"></a>原子指针 DCL安全</h1><p>上面所讲的双重锁检查因为内存读写的乱序性，会使得线程不安全，因此在上述基础上使用原子指针可以在使用双重锁检查的基础上，保证内存访问不会被重新排序。</p>
+<p>我用了QT中的<a href="https://doc.qt.io/qt-5/qatomicpointer.html" target="_blank" rel="noopener">QAtomicPointer</a>，QAtomicPointer是一个模板类，提供原子指针操作。</p>
+<h3 id="bool-QAtomicPointer-testAndSetOrdered-T-expectedValue-T-newValue"><a href="#bool-QAtomicPointer-testAndSetOrdered-T-expectedValue-T-newValue" class="headerlink" title="bool QAtomicPointer::testAndSetOrdered(T *expectedValue, T *newValue)"></a>bool QAtomicPointer::testAndSetOrdered(T <em>*expectedValue</em>, T <em>*newValue</em>)</h3><p>Atomic test-and-set.</p>
+<p>If the current value of this <a href="https://doc.qt.io/qt-5/qatomicpointer.html" target="_blank" rel="noopener">QAtomicPointer</a> is the <em>expectedValue</em>, the test-and-set functions assign the <em>newValue</em> to this <a href="https://doc.qt.io/qt-5/qatomicpointer.html" target="_blank" rel="noopener">QAtomicPointer</a> and return true. If the values are <em>not</em> the same, this function does nothing and returns <code>false</code>.</p>
+<p>This function uses <em>ordered</em> <a href="https://doc.qt.io/qt-5/qatomicpointer.html#memory-ordering" target="_blank" rel="noopener">memory ordering</a> semantics, which ensures that memory access before and after the atomic operation (in program order) may not be re-ordered.</p>
+<p>这个成员函数就可以保证原子指针操作前后内存访问不会被重新排序</p>
+<pre><code class="C++">template&lt;typename T&gt;
+class Singleton
+{
+public:
+    static T* Instance()
+    {
+
+        QMutexLocker mutexLocker(&amp;s_lock);
+        if(m_instance.testAndSetOrdered(0,0))
+        {
+            m_instance.testAndSetOrdered(0, new T);
+        }
+
+        return m_instance;
+    }
+
+    static void release()
+    {
+        QMutexLocker mutexLocker(&amp;s_lock);
+        m_instance.fetchAndStoreOrdered(0);
+    }
+
+private:
+    Q_DISABLE_COPY(Singleton)
+
+private:
+    static QMutex s_lock;
+    static QAtomicPointer&lt;T&gt; m_instance;
+};
+
+template &lt;typename T&gt;
+QAtomicPointer&lt;T&gt; Singleton&lt;T&gt;::m_instance;
 
 template &lt;typename T&gt;
 QMutex Singleton&lt;T&gt;::s_lock;</code></pre>
