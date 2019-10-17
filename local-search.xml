@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>策略模式 Strategy Pattern</title>
+    <link href="undefined%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F-Strategy-Pattern/"/>
+    <url>%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F-Strategy-Pattern/</url>
+    
+    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。这种类型的设计模式属于行为型模式。</p><p>在策略模式中，我们创建表示各种策略的对象和一个行为随着策略对象改变而改变的 context 对象。策略对象改变 context 对象的执行算法。</p><h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>目前我在加密算法的使用上用到了这样的策略模式，可以动态选择加密的具体方法：MD5/SHA2/SM3等</p><h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><p>这里按照我个人的理解方式，我会拿一个商场促销活动的例子。</p><p>商场促销，有2种可以选择的折扣方式：1.总价打八折；2.每满100元减22元。</p><p>首先可以建立一个策略的抽象类：</p><pre><code class="C++">class Strategy{public:    virtual void Calculation(double &amp;total) = 0;    virtual ~Strategy(){}};</code></pre><p>然后继承于策略类写出具体的算法：</p><pre><code class="C++">class ConcreteStrategyA : public Strategy   //总价打八折{public:    void Calculation(double &amp;total)    {        total = 0.8*total;    }};class ConcreteStrategyB : public Strategy   //每满100减22{public:    void Calculation(double &amp;total)    {        int n = total/100;        total = total - 22*n;    }};</code></pre><p>写完算法类后就需要一个上下文连接类，连接用户交互与底层算法，这里我配合简单工厂模式写了一个策略的配置方式：</p><pre><code class="C++">class ContextFactory{private:    Strategy * strategy = nullptr;public:    ContextFactory(int p)    {        switch (p) {        case 1:            strategy = new ConcreteStrategyA();            break;        case 2:            strategy = new ConcreteStrategyB();            break;        }    }    void ChoseFactory(double &amp;total)    {        strategy-&gt;Calculation(total);    }};</code></pre><p>可以看到配置类里有个私有的策略类，初始化为空，当用户构造ContextFactory类时传入策略方案，根据选择的策略方案构造具体的算法，选择完策略算法后就可以调用计算函数进行总价的计算。</p><h1 id="适用性"><a href="#适用性" class="headerlink" title="适用性"></a>适用性</h1><p>1，多个类只区别在表现行为不同，可以使用Strategy模式，在运行时动态选择具体要执行的行为。</p><p>2，需要在不同情况下使用不同的策略(算法)，或者策略还可能在未来用其它方式来实现。</p><p>3，对客户隐藏具体策略(算法)的实现细节，彼此完全独立。</p><h1 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h1><p><strong>优点：</strong></p><p>1，策略模式提供了管理相关的算法族的办法。策略类的等级结构定义了一个算法或行为族。恰当使用继承可以把公共的代码移到父类里面，从而避免代码重复。</p><p>2，使用策略模式可以避免使用多重条件(if-else)语句。多重条件语句不易维护，它把采取哪一种算法或采取哪一种行为的逻辑与算法或行为的逻辑混合在一起，统统列在一个多重条件语句里面，比使用继承的办法还要原始和落后。</p><p><strong>缺点：</strong></p><p>1，客户端必须知道所有的策略类，并自行决定使用哪一个策略类。这就意味着客户端必须理解这些算法的区别，以便适时选择恰当的算法类。换言之，策略模式只适用于客户端知道算法或行为的情况。</p><p>2，由于策略模式把每个具体的策略实现都单独封装成为类，如果备选的策略很多的话，那么对象的数目就会很可观。</p><h1 id="和其他设计模式的区别"><a href="#和其他设计模式的区别" class="headerlink" title="和其他设计模式的区别"></a>和其他设计模式的区别</h1><p><strong>1，与状态模式</strong></p><p>在解决的问题上，状态模式是解决内在状态的改变，而策略模式是解决内部算法的改变。在解决的方法上，状态模式是自我控制状态的改变，而策略模式是由外部制定使用使用啥策略。</p><p><strong>2，简单工厂模式</strong></p><p>简单工厂模式是创建型模式，关注对象的创建。策略模式是行为型模式，关注行为的封装。简单工厂模式是根据不同的条件返回一个适合的类给你使用，然后调用者使用工厂类返回的类去完成相应的操作。而策略模式是必须首先创建一个想使用的类实例，然后实例被当作参数传递进去，既而通过该实例去调用不用的算法。在简单工厂模式中实现了通过条件选取一个类去实例化对象，策略模式则将选取相应对象的工作交给模式的使用者，它本身不去做选取工作。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>设计模式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>C++</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>单例模式 Singleton Pattem</title>
     <link href="undefined%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-Singleton-Pattem/"/>
     <url>%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-Singleton-Pattem/</url>

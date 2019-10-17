@@ -128,6 +128,63 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/设计模式/策略模式-Strategy-Pattern/" target="_self">
+          <img src="/img_post/transfer_success.jpg" srcset="/img/loading.gif" alt="策略模式 Strategy Pattern" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/设计模式/策略模式-Strategy-Pattern/">
+        <p class="h4 index-header">策略模式 Strategy Pattern</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">简介在策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。这种类型的设计模式属于行为型模式。
+在策略模式中，我们创建表示各种策略的对象和一个行为随着策略对象改变而改变的 context 对象。策略对象改变 context 对象的执行算法。
+应用场景目前我在加密算法的使用上用到了这样的策略模式，可以动态选择加密的具体方法：MD5/SHA2/SM3等
+实现方式这里按照我个人的理解方式，我会拿一个商场促销活动的例子。
+商场促销，有2种可以选择的折扣方式：1.总价打八折；2.每满100元减22元。
+首先可以建立一个策略的抽象类：
+class Strategy
+{
+public:
+    virtual void Calculation(double &amp;total) = 0;
+    virtual ~Strategy(){}
+};
+然后继承于策略类写出具体的算法：
+class ConcreteStrategyA : public Strategy   //总价打八折
+{
+public:
+    void Calculation(double &amp;</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-10-17&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/C++">C++</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/设计模式/单例模式-Singleton-Pattem/" target="_self">
           <img src="/img_post/transfer_success.jpg" srcset="/img/loading.gif" alt="单例模式 Singleton Pattem" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
