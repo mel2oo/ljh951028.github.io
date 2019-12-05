@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>MQTT 开发基础</title>
+    <link href="undefinedMQTT/MQTT-%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/"/>
+    <url>MQTT/MQTT-%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/</url>
+    
+    <content type="html"><![CDATA[<h1 id="了解MQTT协议"><a href="#了解MQTT协议" class="headerlink" title="了解MQTT协议"></a>了解MQTT协议</h1><p><strong>MQTT 是一种连接协议，它指定了如何组织数据字节并通过 TCP/IP 网络传输它们。但实际上，开发人员并不需要了解这个连接协议。我们只需要知道，每条消息有一个命令和数据有效负载。该命令定义消息类型（例如 CONNECT 消息或 SUBSCRIBE 消息）。所有 MQTT 库和工具都提供了直接处理这些消息的简单方法，并能自动填充一些必需的字段，比如消息和客户端 ID。</strong></p><hr><p>首先，客户端发送一条 CONNECT 消息来连接代理。CONNECT 消息要求建立从客户端到代理的连接。CONNECT 消息包含以下内容参数。</p><table><thead><tr><th align="left">参数</th><th>说明</th></tr></thead><tbody><tr><td align="left">cleanSession</td><td>此标志指定连接是否是持久性的。持久会话会将所有订阅和可能丢失的消息（具体取决于 QoS） 都存储在代理中。</td></tr><tr><td align="left">username</td><td>代理的身份验证和授权凭证。</td></tr><tr><td align="left">password</td><td>代理的身份验证和授权凭证。</td></tr><tr><td align="left">lastWillTopic</td><td>连接意外中断时，代理会自动向某个主题发送一条 “last will” 消息。</td></tr><tr><td align="left">lastWillQos</td><td>“last will” 消息的 QoS。</td></tr><tr><td align="left">lastWillMessage</td><td>“last will” 消息本身。</td></tr><tr><td align="left">keepAlive</td><td>这是客户端通过 ping 代理来保持连接有效所需的时间间隔。</td></tr></tbody></table><hr><p>客户端收到来自代理的一条 CONNACK 消息。CONNACK 消息包含以下内容参数。</p><table><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td>sessionPresent</td><td>此参数表明连接是否已有一个持久会话。也就是说，连接已订阅了主题，而且会接收丢失的消息。</td></tr><tr><td>returnCode</td><td>0 表示成功。其他值指出了失败的原因。</td></tr></tbody></table><hr><p>建立连接后，客户端然后会向代理发送一条或多条 SUBSCRIBE 消息，表明它会从代理接收针对某些主题的消息。消息可以包含一个或多个重复的参数</p><table><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td>qos</td><td>qos（服务质量或 QoS）标志表明此主题范围内的消息传送到客户端所需的一致程度。<br>值 0：不可靠，消息基本上仅传送一次，如果当时客户端不可用，则会丢失该消息。<br>值 1：消息应传送至少 1 次。<br>值 2：消息仅传送一次。</td></tr><tr><td>topic</td><td>要订阅的主题。一个主题可以有多个级别，级别之间用斜杠字符分隔。例如，“sys/hps100/request” 和 “sys/hps100/push” 是有效的主题。</td></tr></tbody></table><hr><p>客户端成功订阅某个主题后，代理会返回一条 SUBACK 消息，其中包含一个或多个 returnCode 参数。</p><table><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td>returnCode</td><td>SUBCRIBE 命令中的每个主题都有一个返回代码。返回值如下所示。<br>值 0 - 2：成功达到相应的 QoS 级别。<br>值 128：失败。</td></tr></tbody></table><hr><p>与 SUBSCRIBE 消息对应，客户端也可以通过 UNSUBSCRIBE 消息取消订阅一个或多个主题。</p><table><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td>topic</td><td>此参数可重复用于多个主题。</td></tr></tbody></table><hr><p>客户端可向代理发送 PUBLISH 消息。该消息包含一个主题和数据有效负载。代理然后将消息转发给所有订阅该主题的客户端</p><table><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td>topicName</td><td>发布的消息的相关主题。</td></tr><tr><td>qos</td><td>消息传递的服务质量水平。</td></tr><tr><td>retainFlag</td><td>此标志表明代理是否保留该消息作为针对此主题的最后一条已知消息。</td></tr><tr><td>payload</td><td>消息中的实际数据。它可以是文本字符串或二进制大对象数据。</td></tr></tbody></table>]]></content>
+    
+    
+    <categories>
+      
+      <category>MQTT</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MQTT</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MQTT 协议 3.1.1</title>
     <link href="undefinedNetwork/MQTT-%E5%8D%8F%E8%AE%AE-3-1-1/"/>
     <url>Network/MQTT-%E5%8D%8F%E8%AE%AE-3-1-1/</url>
