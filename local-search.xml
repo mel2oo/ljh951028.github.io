@@ -129,6 +129,31 @@
   
   
   <entry>
+    <title>简单工厂模式-Simple-Factory-Pattern</title>
+    <link href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-Simple-Factory-Pattern/"/>
+    <url>/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-Simple-Factory-Pattern/</url>
+    
+    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>简单工厂模式(Simple Factory Pattern)：又称为静态工厂方法(Static Factory Method)模式，它属于类创建型模式。在简单工厂模式中，可以根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有共同的父类。</p><h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><p>调用一个类达到创建其他类实例的效果</p><h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ul><li>工厂类含有必要的判断逻辑，可以决定在什么时候创建哪一个产品类的实例，客户端可以免除直接创建产品对象的责任，而仅仅“消费”产品；简单工厂模式通过这种做法实现了对责任的分割，它提供了专门的工厂类用于创建对象。</li><li>客户端无须知道所创建的具体产品类的类名，只需要知道具体产品类所对应的参数即可，对于一些复杂的类名，通过简单工厂模式可以减少使用者的记忆量。</li><li>通过引入配置文件，可以在不修改任何客户端代码的情况下更换和增加新的具体产品类，在一定程度上提高了系统的灵活性。</li></ul><h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><ul><li>由于工厂类集中了所有产品创建逻辑，一旦不能正常工作，整个系统都要受到影响。</li><li>使用简单工厂模式将会增加系统中类的个数，在一定程序上增加了系统的复杂度和理解难度。</li><li>系统扩展困难，一旦添加新产品就不得不修改工厂逻辑，在产品类型较多时，有可能造成工厂逻辑过于复杂，不利于系统的扩展和维护。</li><li>简单工厂模式由于使用了静态工厂方法，造成工厂角色无法形成基于继承的等级结构。</li></ul><h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><ul><li>工厂类负责创建的对象比较少：由于创建的对象较少，不会造成工厂方法中的业务逻辑太过复杂。</li><li>客户端只知道传入工厂类的参数，对于如何创建对象不关心：客户端既不需要关心创建细节，甚至连类名都不需要记住，只需要知道类型所对应的参数。</li></ul><h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><pre><code class="C++">class Commodity{public:    virtual void getPrice() = 0;protected:    ~Commodity(){}};class Water : public Commodity{public:    virtual void getPrice()    {        qDebug()&lt;&lt;&quot;Water Price: 2.5&quot;;    }protected:    ~Water(){}};class Milk : public Commodity{public:    virtual void getPrice()    {        qDebug()&lt;&lt;&quot;Milk Price: 4&quot;;    }protected:    ~Milk(){}};class CoKe : public Commodity{public:    virtual void getPrice()    {        qDebug()&lt;&lt;&quot;CoKe Price: 3&quot;;    }protected:    ~CoKe(){}};class ChoseCommodity{public:    Commodity *create(const QString &amp;commodity)    {        if(commodity==&quot;Water&quot;)        {            return new Water;        }        else if (commodity==&quot;Milk&quot;)        {            return new Milk;        }        else if (commodity==&quot;CoKe&quot;)        {            return new CoKe;        }        else        {            qDebug()&lt;&lt;&quot;dont have this commodity!&quot;;            return nullptr;        }    }};</code></pre><pre><code class="c++">int main(int argc, char *argv[]){    QCoreApplication a(argc, argv);    ChoseCommodity *c = new ChoseCommodity;    Commodity *commodity = nullptr;    commodity = c-&gt;create(&quot;Water&quot;);    commodity-&gt;getPrice();    commodity = c-&gt;create(&quot;Milk&quot;);    commodity-&gt;getPrice();    commodity = c-&gt;create(&quot;CoKe&quot;);    commodity-&gt;getPrice();    return a.exec();}</code></pre><p><img src="C:%5CUsers%5Cl9776%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1588581388356.png" srcset="/img/loading.gif" alt="1588581388356"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>设计模式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>C++</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>单例模式 Singleton Pattem</title>
     <link href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-Singleton-Pattem/"/>
     <url>/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-Singleton-Pattem/</url>
