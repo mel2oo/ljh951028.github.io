@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>IRP Description</title>
+    <link href="/Security/IRP-Description/"/>
+    <url>/Security/IRP-Description/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Widnows-Kernel-I-O-request-packets"><a href="#Widnows-Kernel-I-O-request-packets" class="headerlink" title="Widnows Kernel I/O request packets"></a>Widnows Kernel I/O request packets</h1><h2 id="0x01-I-O管理器"><a href="#0x01-I-O管理器" class="headerlink" title="0x01 I/O管理器"></a>0x01 I/O管理器</h2><p>Windows I/O管理器为系统内核模式下提供一致的数据流接口，从上层发送下来的请求数据包会按照统一的格式封装成为一个IRP数据包，经过各类过滤层，文件系统，中间层最终流到最底层。理解I/O管理器中IRP的工作原理对于理解Windows内核有很重要的意义。因为所有的请求调用无非都是数据包的传递。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Security</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>-Kernel</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>InfinityHook</title>
     <link href="/Security/InfinityHook/"/>
     <url>/Security/InfinityHook/</url>
@@ -129,7 +154,82 @@
   
   
   <entry>
-    <title>简单工厂模式-Simple-Factory-Pattern</title>
+    <title>建造者模式 Builder Pattern</title>
+    <link href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F-Builder-Pattern/"/>
+    <url>/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F-Builder-Pattern/</url>
+    
+    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>造者模式(Builder Pattern)：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p><p>建造者模式是一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节。建造者模式属于对象创建型模式。根据中文翻译的不同，建造者模式又可以称为生成器模式。</p><h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ul><li>在建造者模式中， <strong>客户端不必知道产品内部组成的细节，将产品本身与产品的创建过程解耦，使得相同的创建过程可以创建不同的产品对象。</strong></li><li>每一个具体建造者都相对独立，而与其他的具体建造者无关，因此可以很方便地替换具体建造者或增加新的具体建造者， <strong>用户使用不同的具体建造者即可得到不同的产品对象</strong> 。</li><li><strong>可以更加精细地控制产品的创建过程</strong> 。将复杂产品的创建步骤分解在不同的方法中，使得创建过程更加清晰，也更方便使用程序来控制创建过程。</li><li><strong>增加新的具体建造者无须修改原有类库的代码，指挥者类针对抽象建造者类编程，系统扩展方便，符合“开闭原则”。</strong></li></ul><h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><ul><li>建造者模式所创建的产品一般具有较多的共同点，其组成部分相似，如果产品之间的差异性很大，则不适合使用建造者模式，因此其使用范围受到一定的限制。</li><li>如果产品的内部变化复杂，可能会导致需要定义很多具体建造者类来实现这种变化，导致系统变得很庞大。</li></ul><h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>在很多游戏软件中，地图包括天空、地面、背景等组成部分，人物角色包括人体、服装、装备等组成部分，可以使用建造者模式对其进行设计，通过不同的具体建造者创建不同类型的地图或人物。</p><h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><pre><code class="c++">class Product{public:    Product(){}    ~Product(){}    void setA(QString A) {        this-&gt;m_A = A;    }    void setB(QString B) {        this-&gt;m_B = B;    }    void setC(QString C) {        this-&gt;m_C = C;    }    void show(){        qDebug()&lt;&lt;m_A&lt;&lt;endl               &lt;&lt;m_B&lt;&lt;endl              &lt;&lt;m_C;    }private:    QString m_A;    QString m_B;    QString m_C;};class AbstractBuilder{public:    AbstractBuilder(){}    virtual ~AbstractBuilder(){}    virtual void createProduct() = 0;    virtual void buildPartA(QString param) = 0;    virtual void buildPartB(QString param) = 0;    virtual void buildPartC(QString param) = 0;    virtual Product* getProduct() = 0;};class Builder: public AbstractBuilder{public:    Builder(){}    ~Builder(){}    void createProduct() {        m_product = new Product;    }    void buildPartA(QString param) {        m_product-&gt;setA(param);    }    void buildPartB(QString param) {        m_product-&gt;setB(param);    }    void buildPartC(QString param) {        m_product-&gt;setC(param);    }    Product* getProduct() {        return m_product;    }private:    Product* m_product;};class Director{public:    Director(AbstractBuilder* builder) {        m_builder = builder;    }    ~Director() {}    void construct() {        if(!m_builder)            return;        m_builder-&gt;buildPartA(&quot;A&quot;);        m_builder-&gt;buildPartB(&quot;B&quot;);        m_builder-&gt;buildPartC(&quot;C&quot;);    }private:    AbstractBuilder* m_builder;};</code></pre><pre><code class="c++">    Builder *builder = new Builder;    Director *director = new Director(builder);    builder-&gt;createProduct();    director-&gt;construct();    Product *product = builder-&gt;getProduct();    product-&gt;show();</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>设计模式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>C++</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>抽象工厂模式 Abstract Factory</title>
+    <link href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-Abstract-Factory/"/>
+    <url>/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-Abstract-Factory/</url>
+    
+    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>抽象工厂模式(Abstract Factory Pattern)：提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。抽象工厂模式又称为Kit模式，属于对象创建型模式。</p><h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ul><li>抽象工厂模式隔离了具体类的生成，使得客户并不需要知道什么被创建。由于这种隔离，更换一个具体工厂就变得相对容易。所有的具体工厂都实现了抽象工厂中定义的那些公共接口，因此只需改变具体工厂的实例，就可以在某种程度上改变整个软件系统的行为。另外，应用抽象工厂模式可以实现高内聚低耦合的设计目的，因此抽象工厂模式得到了广泛的应用。</li><li>当一个产品族中的多个对象被设计成一起工作时，它能够保证客户端始终只使用同一个产品族中的对象。这对一些需要根据当前环境来决定其行为的软件系统来说，是一种非常实用的设计模式。</li><li>增加新的具体工厂和产品族很方便，无须修改已有系统，符合“开闭原则”。</li></ul><h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><ul><li>在添加新的产品对象时，难以扩展抽象工厂来生产新种类的产品，这是因为在抽象工厂角色中规定了所有可能被创建的产品集合，要支持新种类的产品就意味着要对该接口进行扩展，而这将涉及到对抽象工厂角色及其所有子类的修改，显然会带来较大的不便。</li><li>开闭原则的倾斜性（增加新的工厂和产品族容易，增加新的产品等级结构麻烦）。</li></ul><h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>在很多软件系统中需要更换界面主题，要求界面中的按钮、文本框、背景色等一起发生改变时，可以使用抽象工厂模式进行设计。</p><h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><pre><code class="c++">class Shop{public:    virtual void name() = 0;protected:    ~Shop(){}};class AbstractFactory{public:    virtual Shop *createA() = 0;    virtual Shop *createB() = 0;protected:    ~AbstractFactory(){}};class Milk : public Shop{public:    virtual void name(){        qDebug()&lt;&lt;&quot;milk&quot;;    }protected:    ~Milk(){}};class Water : public Shop{public:    virtual void name(){        qDebug()&lt;&lt;&quot;Water&quot;;    }protected:    ~Water(){}};class Meat : public Shop{public:    virtual void name(){        qDebug()&lt;&lt;&quot;Meat&quot;;    }protected:    ~Meat(){}};class Vegetables : public Shop{public:    virtual void name(){        qDebug()&lt;&lt;&quot;Vegetables&quot;;    }protected:    ~Vegetables(){}};class Drink : public AbstractFactory{public:    virtual Shop *createA(){        return new Milk;    }    virtual Shop *createB(){        return new Water;    }protected:    ~Drink(){}};class Food : public AbstractFactory{public:    virtual Shop *createA(){        return new Meat;    }    virtual Shop *createB(){        return new Vegetables;    }protected:    ~Food(){}};</code></pre><pre><code class="c++">    Shop *shop = nullptr;    AbstractFactory *ab = nullptr;    ab = new Drink;    shop = ab-&gt;createA();    shop-&gt;name();    shop = ab-&gt;createB();    shop-&gt;name();    ab = new Food;    shop = ab-&gt;createA();    shop-&gt;name();    shop = ab-&gt;createB();    shop-&gt;name();</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>设计模式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>C++</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>工厂模式 Factory Method Pattern</title>
+    <link href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-Factory-Method-Pattern/"/>
+    <url>/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-Factory-Method-Pattern/</url>
+    
+    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>工厂方法模式(Factory Method Pattern)又称为工厂模式，也叫虚拟构造器(Virtual Constructor)模式或者多态工厂(Polymorphic Factory)模式，它属于类创建型模式。在工厂方法模式中，工厂父类负责定义创建产品对象的公共接口，而工厂子类则负责生成具体的产品对象，这样做的目的是将产品类的实例化操作延迟到工厂子类中完成，即通过工厂子类来确定究竟应该实例化哪一个具体产品类。</p><h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><p>专门定义一个类来负责创建其它类的实例，被创建的实例通常都具有共同的父类</p><h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ul><li>在工厂方法模式中，工厂方法用来创建客户所需要的产品，同时还向客户隐藏了哪种具体产品类将被实例化这一细节，用户只需要关心所需产品对应的工厂，无须关心创建细节，甚至无须知道具体产品类的类名。</li><li>基于工厂角色和产品角色的多态性设计是工厂方法模式的关键。它能够使工厂可以自主确定创建何种产品对象，而如何创建这个对象的细节则完全封装在具体工厂内部。工厂方法模式之所以又被称为多态工厂模式，是因为所有的具体工厂类都具有同一抽象父类。</li><li>使用工厂方法模式的另一个优点是在系统中加入新产品时，无须修改抽象工厂和抽象产品提供的接口，无须修改客户端，也无须修改其他的具体工厂和具体产品，而只要添加一个具体工厂和具体产品就可以了。这样，系统的可扩展性也就变得非常好，完全符合“开闭原则”。</li></ul><h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><ul><li>在添加新产品时，需要编写新的具体产品类，而且还要提供与之对应的具体工厂类，系统中类的个数将成对增加，在一定程度上增加了系统的复杂度，有更多的类需要编译和运行，会给系统带来一些额外的开销。</li><li>由于考虑到系统的可扩展性，需要引入抽象层，在客户端代码中均使用抽象层进行定义，增加了系统的抽象性和理解难度，且在实现时可能需要用到DOM、反射等技术，增加了系统的实现难度。</li></ul><h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>在以下情况下可以使用工厂方法模式：</p><ul><li>一个类不知道它所需要的对象的类：在工厂方法模式中，客户端不需要知道具体产品类的类名，只需要知道所对应的工厂即可，具体的产品对象由具体工厂类创建；客户端需要知道创建具体产品的工厂类。</li><li>一个类通过其子类来指定创建哪个对象：在工厂方法模式中，对于抽象工厂类只需要提供一个创建产品的接口，而由其子类来确定具体要创建的对象，利用面向对象的多态性和里氏代换原则，在程序运行时，子类对象将覆盖父类对象，从而使得系统更容易扩展。</li><li>将创建对象的任务委托给多个工厂子类中的某一个，客户端在使用时可以无须关心是哪一个工厂子类创建产品子类，需要时再动态指定，可将具体工厂类的类名存储在配置文件或数据库中。</li></ul><h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><pre><code class="c++">class Shop{public:    virtual void commodity() = 0;protected:    ~Shop(){}};class Water : public Shop{public:    void commodity()    {        qDebug()&lt;&lt;&quot;Water&quot;;    }protected:    ~Water(){}};class Milk : public Shop{public:    void commodity()    {        qDebug()&lt;&lt;&quot;Milk&quot;;    }protected:    ~Milk(){}};class Factory{public:    virtual Shop *create() = 0;protected:    ~Factory(){}};class WaterFactory : public Factory{public:    virtual Shop *create()    {        return new Water;    }protected:    ~WaterFactory(){}};class MilkFactory : public Factory{public:    virtual Shop *create()    {        return new Milk;    }protected:    ~MilkFactory(){}};</code></pre><pre><code class="c++">int main(int argc, char *argv[]){    QCoreApplication a(argc, argv);    Factory *factory = nullptr;    Shop *shop = nullptr;    factory = new MilkFactory;    shop = factory-&gt;create();    shop-&gt;commodity();    factory = new WaterFactory;    shop = factory-&gt;create();    shop-&gt;commodity();    return a.exec();}</code></pre><p><img src="C:%5CUsers%5Cl9776%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1588589709274.png" srcset="/img/loading.gif" alt="1588589709274"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>设计模式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>C++</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>简单工厂模式 Simple Factory Pattern</title>
     <link href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-Simple-Factory-Pattern/"/>
     <url>/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-Simple-Factory-Pattern/</url>
     

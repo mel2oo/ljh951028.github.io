@@ -15,7 +15,7 @@
   <meta name="description" content>
   <meta name="author" content="Li Junhao">
   <meta name="keywords" content="Windows,Kernel,Qt,Security">
-  <title>归档 ~ God mercy me</title>
+  <title>God mercy me</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
@@ -36,7 +36,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -118,6 +118,10 @@
           </div>
 
           
+            <div class="scroll-down-bar">
+              <i class="fas fa-angle-down scroll-down-arrow"></i>
+            </div>
+          
         </div>
       </div>
     </div>
@@ -133,81 +137,182 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">共计 13 篇文章</p>
-  <hr>
-  
+
+  <div class="row mb-4 mx-auto">
     
-      
-      <p class="h5">2020</p>
     
-    <a href="/Security/IRP-Description/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">IRP Description</span>
-      <span style="float: right;">07-09</span>
-    </a>
-  
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/设计模式/单例模式-Singleton-Pattem/" target="_self">
+          <img src="/img_post/transfer_success.jpg" srcset="/img/loading.gif" alt="单例模式 Singleton Pattem" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
-    <a href="/Security/InfinityHook/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">InfinityHook</span>
-      <span style="float: right;">02-13</span>
-    </a>
-  
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/设计模式/单例模式-Singleton-Pattem/">
+        <p class="h4 index-header">单例模式 Singleton Pattem</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">简介在面向对象设计与开发中，往往会碰到一些特殊的情况，必须保证一个类在系统中只存在一个实例，这样才能确保它们的逻辑正确性。
+因此就产生了这种特殊的设计模式：单例模式。
+特点
+单例类只有一个实例。
+单例类必须自己创建自己的唯一实例。
+单例类必须给所有其他对象提供这一实例。
+
+应用场景
+Windows的Task Manager（任务管理器）就是很典型的单例模式，你不能同时打开两个任务管理器。Windows的回收站也是同理。
+应用程序的日志应用，一般都可以用单例模式实现，只能有一个实例去操作文件。
+读取配置文件，读取的配置项是公有的，一个地方读取了所有地方都能用，没有必要所有的地方都能读取一遍配置。
+数据库连接池，多线程的线程池。
+
+懒汉模式懒汉模式：单例类的静态局部变量只在第一次调用的时候被初始化一次，时间换空间，线程不安全
+class Singleton
+{
+public:
+
+    static Singleton&amp; GetInstance()
+    {
+        static Singleton instance;
+        return instance;
+ </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-10-16&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/C++">C++</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
     
-      
-      <p class="h5">2019</p>
     
-    <a href="/MQTT/MQTT-开发基础/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MQTT 开发基础</span>
-      <span style="float: right;">12-05</span>
-    </a>
-  
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/Security/ClamAV开源杀毒引擎二次开发0x01/" target="_self">
+          <img src="/img_post/logan.jpg" srcset="/img/loading.gif" alt="ClamAV 开源杀毒引擎二次开发 0x01" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
-    <a href="/Network/MQTT-协议-3-1-1/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MQTT 协议 3.1.1</span>
-      <span style="float: right;">11-05</span>
-    </a>
-  
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/Security/ClamAV开源杀毒引擎二次开发0x01/">
+        <p class="h4 index-header">ClamAV 开源杀毒引擎二次开发 0x01</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">0x00 前言从本文开始我会记录下研究ClamAV开源反病毒引擎的过程，会对整个源码的编译/使用/注释按个人理解做一些说明。学习过程必然是由浅入深的，可能有时前面文章中自己的看法并不正确，之后也会按自己的理解深入来修改之前的文章。
+0x01 环境准备
+ClamAV防病毒引擎编译环境：VS2017  Professional
+
+
+二次开发环境：QT5.12.4 MSVC 2017 32/64bit
+
+
+引擎源码下载：clamav-0.101.4 （哪边下都行）
+
+
+github仓库：https://github.com/Cisco-Talos/clamav-devel
+git clone https://github.com/vrtadmin/clamav-devel.git
+
+
+
+官网地址：https://www.clamav.net/downloads
+
+
+OpenSSL库
+
+0x02 目录结构首先我们要进入win32目录，找到VS工程配置文件打开，可以看到clamav 工程目录下有很多项目，目前我们只需要着重关注 libclamav ，这就是整个防病毒引擎库项目，官方介绍 The </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-09-28&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Security">Security</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/ClamAV">ClamAV</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
     
-    <a href="/Network/MQTT-协议-5-0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MQTT 协议 5.0</span>
-      <span style="float: right;">11-05</span>
-    </a>
-  
     
-    <a href="/设计模式/策略模式-Strategy-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">策略模式 Strategy Pattern</span>
-      <span style="float: right;">10-17</span>
-    </a>
-  
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/Security/ClamAV开源杀毒引擎二次开发0x00/" target="_self">
+          <img src="/img_post/the_last_jedi.png" srcset="/img/loading.gif" alt="ClamAV 开源杀毒引擎二次开发 0x00" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
-    <a href="/设计模式/建造者模式-Builder-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">建造者模式 Builder Pattern</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-    
-    <a href="/设计模式/抽象工厂模式-Abstract-Factory/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">抽象工厂模式 Abstract Factory</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-    
-    <a href="/设计模式/工厂模式-Factory-Method-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">工厂模式 Factory Method Pattern</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-    
-    <a href="/设计模式/简单工厂模式-Simple-Factory-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">简单工厂模式 Simple Factory Pattern</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-</div>
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/Security/ClamAV开源杀毒引擎二次开发0x00/">
+        <p class="h4 index-header">ClamAV 开源杀毒引擎二次开发 0x00</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">前言近来有想法研究下windows下的杀毒引擎，一来是为了之后的工作中大概率会接触一些，二来也是因为自己兴趣所向。接下来发布的“基于ClamAV开源杀毒引擎二次开发”文章都是为研究该开源杀毒引擎编译/调用/工作方式所做的笔记，其中所述的方式方法不一定正确，若有错误理解也请指正。
+首先为什么选择ClamAV这款杀毒引擎来学习呢？因为我就只找到了这么一个开源的，能在windows上用的…
+然后我看了官网上使用手册中的介绍，功能还是相当强大的，不逊于一般的杀毒引擎。
+ClamAV®  Introduction/简介ClamAV® is an open source antivirus engine for detecting trojans, viruses, malware &amp; other malicious threats.
+ClamAV® is an open source (GPL) anti-virus engine used in a variety of situations including email scanning, web scanning, and end</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-09-28&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Security">Security</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/ClamAV">ClamAV</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+
 
   <nav aria-label="index posts navigation">
     <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fas fa-angle-double-right"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
     </span>
   </nav>
   
@@ -216,6 +321,7 @@
       ele.href += '#board';
     }
   </script>
+
 
 
               </div>
@@ -341,7 +447,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "Live in dark / Serve in light&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

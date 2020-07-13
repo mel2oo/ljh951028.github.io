@@ -15,7 +15,7 @@
   <meta name="description" content>
   <meta name="author" content="Li Junhao">
   <meta name="keywords" content="Windows,Kernel,Qt,Security">
-  <title>归档 ~ God mercy me</title>
+  <title>抽象工厂模式 Abstract Factory ~ God mercy me</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
@@ -36,7 +36,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -115,6 +115,41 @@
             </span>
 
             
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期三, 十月 16日 2019, 1:20 下午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    692 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      2 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
           </div>
 
           
@@ -125,104 +160,181 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 13 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/Security/IRP-Description/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">IRP Description</span>
-      <span style="float: right;">07-09</span>
-    </a>
-  
-    
-    <a href="/Security/InfinityHook/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">InfinityHook</span>
-      <span style="float: right;">02-13</span>
-    </a>
-  
-    
-      
-      <p class="h5">2019</p>
-    
-    <a href="/MQTT/MQTT-开发基础/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MQTT 开发基础</span>
-      <span style="float: right;">12-05</span>
-    </a>
-  
-    
-    <a href="/Network/MQTT-协议-3-1-1/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MQTT 协议 3.1.1</span>
-      <span style="float: right;">11-05</span>
-    </a>
-  
-    
-    <a href="/Network/MQTT-协议-5-0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MQTT 协议 5.0</span>
-      <span style="float: right;">11-05</span>
-    </a>
-  
-    
-    <a href="/设计模式/策略模式-Strategy-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">策略模式 Strategy Pattern</span>
-      <span style="float: right;">10-17</span>
-    </a>
-  
-    
-    <a href="/设计模式/建造者模式-Builder-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">建造者模式 Builder Pattern</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-    
-    <a href="/设计模式/抽象工厂模式-Abstract-Factory/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">抽象工厂模式 Abstract Factory</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-    
-    <a href="/设计模式/工厂模式-Factory-Method-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">工厂模式 Factory Method Pattern</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-    
-    <a href="/设计模式/简单工厂模式-Simple-Factory-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">简单工厂模式 Simple Factory Pattern</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-</div>
 
-  <nav aria-label="index posts navigation">
-    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fas fa-angle-double-right"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
-      ele.href += '#board';
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>抽象工厂模式(Abstract Factory Pattern)：提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。抽象工厂模式又称为Kit模式，属于对象创建型模式。</p>
+<h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ul>
+<li>抽象工厂模式隔离了具体类的生成，使得客户并不需要知道什么被创建。由于这种隔离，更换一个具体工厂就变得相对容易。所有的具体工厂都实现了抽象工厂中定义的那些公共接口，因此只需改变具体工厂的实例，就可以在某种程度上改变整个软件系统的行为。另外，应用抽象工厂模式可以实现高内聚低耦合的设计目的，因此抽象工厂模式得到了广泛的应用。</li>
+<li>当一个产品族中的多个对象被设计成一起工作时，它能够保证客户端始终只使用同一个产品族中的对象。这对一些需要根据当前环境来决定其行为的软件系统来说，是一种非常实用的设计模式。</li>
+<li>增加新的具体工厂和产品族很方便，无须修改已有系统，符合“开闭原则”。</li>
+</ul>
+<h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><ul>
+<li>在添加新的产品对象时，难以扩展抽象工厂来生产新种类的产品，这是因为在抽象工厂角色中规定了所有可能被创建的产品集合，要支持新种类的产品就意味着要对该接口进行扩展，而这将涉及到对抽象工厂角色及其所有子类的修改，显然会带来较大的不便。</li>
+<li>开闭原则的倾斜性（增加新的工厂和产品族容易，增加新的产品等级结构麻烦）。</li>
+</ul>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>在很多软件系统中需要更换界面主题，要求界面中的按钮、文本框、背景色等一起发生改变时，可以使用抽象工厂模式进行设计。</p>
+<h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><pre><code class="c++">class Shop
+{
+public:
+    virtual void name() = 0;
+protected:
+    ~Shop(){}
+};
+
+class AbstractFactory
+{
+public:
+    virtual Shop *createA() = 0;
+    virtual Shop *createB() = 0;
+
+protected:
+    ~AbstractFactory(){}
+};
+
+class Milk : public Shop
+{
+public:
+    virtual void name(){
+        qDebug()&lt;&lt;&quot;milk&quot;;
     }
-  </script>
+protected:
+    ~Milk(){}
+};
 
+class Water : public Shop
+{
+public:
+    virtual void name(){
+        qDebug()&lt;&lt;&quot;Water&quot;;
+    }
+protected:
+    ~Water(){}
+};
 
-              </div>
-            </div>
+class Meat : public Shop
+{
+public:
+    virtual void name(){
+        qDebug()&lt;&lt;&quot;Meat&quot;;
+    }
+protected:
+    ~Meat(){}
+};
+
+class Vegetables : public Shop
+{
+public:
+    virtual void name(){
+        qDebug()&lt;&lt;&quot;Vegetables&quot;;
+    }
+protected:
+    ~Vegetables(){}
+};
+
+class Drink : public AbstractFactory
+{
+public:
+    virtual Shop *createA(){
+        return new Milk;
+    }
+
+    virtual Shop *createB(){
+        return new Water;
+    }
+
+protected:
+    ~Drink(){}
+};
+
+class Food : public AbstractFactory
+{
+public:
+    virtual Shop *createA(){
+        return new Meat;
+    }
+
+    virtual Shop *createB(){
+        return new Vegetables;
+    }
+
+protected:
+    ~Food(){}
+};</code></pre>
+<pre><code class="c++">    Shop *shop = nullptr;
+    AbstractFactory *ab = nullptr;
+
+    ab = new Drink;
+    shop = ab-&gt;createA();
+    shop-&gt;name();
+
+    shop = ab-&gt;createB();
+    shop-&gt;name();
+
+    ab = new Food;
+    shop = ab-&gt;createA();
+    shop-&gt;name();
+
+    shop = ab-&gt;createB();
+    shop-&gt;name();</code></pre>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/C++">C++</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -301,6 +413,11 @@
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
@@ -341,7 +458,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "抽象工厂模式 Abstract Factory&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

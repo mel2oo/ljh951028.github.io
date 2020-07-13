@@ -15,7 +15,7 @@
   <meta name="description" content>
   <meta name="author" content="Li Junhao">
   <meta name="keywords" content="Windows,Kernel,Qt,Security">
-  <title>简单工厂模式 Simple Factory Pattern ~ God mercy me</title>
+  <title>工厂模式 Factory Method Pattern ~ God mercy me</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
@@ -119,7 +119,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期三, 十月 16日 2019, 10:32 上午
+                  星期三, 十月 16日 2019, 11:20 上午
                 </p>
               
 
@@ -128,7 +128,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    768 字
+                    1.1k 字
                   </span>&nbsp;
                 
 
@@ -169,108 +169,107 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>简单工厂模式(Simple Factory Pattern)：又称为静态工厂方法(Static Factory Method)模式，它属于类创建型模式。在简单工厂模式中，可以根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有共同的父类。</p>
-<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><p>调用一个类达到创建其他类实例的效果</p>
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>工厂方法模式(Factory Method Pattern)又称为工厂模式，也叫虚拟构造器(Virtual Constructor)模式或者多态工厂(Polymorphic Factory)模式，它属于类创建型模式。在工厂方法模式中，工厂父类负责定义创建产品对象的公共接口，而工厂子类则负责生成具体的产品对象，这样做的目的是将产品类的实例化操作延迟到工厂子类中完成，即通过工厂子类来确定究竟应该实例化哪一个具体产品类。</p>
+<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><p>专门定义一个类来负责创建其它类的实例，被创建的实例通常都具有共同的父类</p>
 <h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ul>
-<li>工厂类含有必要的判断逻辑，可以决定在什么时候创建哪一个产品类的实例，客户端可以免除直接创建产品对象的责任，而仅仅“消费”产品；简单工厂模式通过这种做法实现了对责任的分割，它提供了专门的工厂类用于创建对象。</li>
-<li>客户端无须知道所创建的具体产品类的类名，只需要知道具体产品类所对应的参数即可，对于一些复杂的类名，通过简单工厂模式可以减少使用者的记忆量。</li>
-<li>通过引入配置文件，可以在不修改任何客户端代码的情况下更换和增加新的具体产品类，在一定程度上提高了系统的灵活性。</li>
+<li>在工厂方法模式中，工厂方法用来创建客户所需要的产品，同时还向客户隐藏了哪种具体产品类将被实例化这一细节，用户只需要关心所需产品对应的工厂，无须关心创建细节，甚至无须知道具体产品类的类名。</li>
+<li>基于工厂角色和产品角色的多态性设计是工厂方法模式的关键。它能够使工厂可以自主确定创建何种产品对象，而如何创建这个对象的细节则完全封装在具体工厂内部。工厂方法模式之所以又被称为多态工厂模式，是因为所有的具体工厂类都具有同一抽象父类。</li>
+<li>使用工厂方法模式的另一个优点是在系统中加入新产品时，无须修改抽象工厂和抽象产品提供的接口，无须修改客户端，也无须修改其他的具体工厂和具体产品，而只要添加一个具体工厂和具体产品就可以了。这样，系统的可扩展性也就变得非常好，完全符合“开闭原则”。</li>
 </ul>
 <h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><ul>
-<li>由于工厂类集中了所有产品创建逻辑，一旦不能正常工作，整个系统都要受到影响。</li>
-<li>使用简单工厂模式将会增加系统中类的个数，在一定程序上增加了系统的复杂度和理解难度。</li>
-<li>系统扩展困难，一旦添加新产品就不得不修改工厂逻辑，在产品类型较多时，有可能造成工厂逻辑过于复杂，不利于系统的扩展和维护。</li>
-<li>简单工厂模式由于使用了静态工厂方法，造成工厂角色无法形成基于继承的等级结构。</li>
+<li>在添加新产品时，需要编写新的具体产品类，而且还要提供与之对应的具体工厂类，系统中类的个数将成对增加，在一定程度上增加了系统的复杂度，有更多的类需要编译和运行，会给系统带来一些额外的开销。</li>
+<li>由于考虑到系统的可扩展性，需要引入抽象层，在客户端代码中均使用抽象层进行定义，增加了系统的抽象性和理解难度，且在实现时可能需要用到DOM、反射等技术，增加了系统的实现难度。</li>
 </ul>
-<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><ul>
-<li>工厂类负责创建的对象比较少：由于创建的对象较少，不会造成工厂方法中的业务逻辑太过复杂。</li>
-<li>客户端只知道传入工厂类的参数，对于如何创建对象不关心：客户端既不需要关心创建细节，甚至连类名都不需要记住，只需要知道类型所对应的参数。</li>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>在以下情况下可以使用工厂方法模式：</p>
+<ul>
+<li>一个类不知道它所需要的对象的类：在工厂方法模式中，客户端不需要知道具体产品类的类名，只需要知道所对应的工厂即可，具体的产品对象由具体工厂类创建；客户端需要知道创建具体产品的工厂类。</li>
+<li>一个类通过其子类来指定创建哪个对象：在工厂方法模式中，对于抽象工厂类只需要提供一个创建产品的接口，而由其子类来确定具体要创建的对象，利用面向对象的多态性和里氏代换原则，在程序运行时，子类对象将覆盖父类对象，从而使得系统更容易扩展。</li>
+<li>将创建对象的任务委托给多个工厂子类中的某一个，客户端在使用时可以无须关心是哪一个工厂子类创建产品子类，需要时再动态指定，可将具体工厂类的类名存储在配置文件或数据库中。</li>
 </ul>
-<h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><pre><code class="C++">class Commodity
+<h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><pre><code class="c++">class Shop
 {
 public:
-    virtual void getPrice() = 0;
+    virtual void commodity() = 0;
+
 protected:
-    ~Commodity(){}
+    ~Shop(){}
 };
 
-class Water : public Commodity
+class Water : public Shop
 {
 public:
-    virtual void getPrice()
+    void commodity()
     {
-        qDebug()&lt;&lt;&quot;Water Price: 2.5&quot;;
+        qDebug()&lt;&lt;&quot;Water&quot;;
     }
+
 protected:
     ~Water(){}
 };
 
-class Milk : public Commodity
+class Milk : public Shop
 {
 public:
-    virtual void getPrice()
+    void commodity()
     {
-        qDebug()&lt;&lt;&quot;Milk Price: 4&quot;;
+        qDebug()&lt;&lt;&quot;Milk&quot;;
     }
+
 protected:
     ~Milk(){}
 };
 
-class CoKe : public Commodity
+class Factory
 {
 public:
-    virtual void getPrice()
-    {
-        qDebug()&lt;&lt;&quot;CoKe Price: 3&quot;;
-    }
+    virtual Shop *create() = 0;
+
 protected:
-    ~CoKe(){}
+    ~Factory(){}
 };
 
-class ChoseCommodity
+class WaterFactory : public Factory
 {
 public:
-    Commodity *create(const QString &amp;commodity)
+    virtual Shop *create()
     {
-        if(commodity==&quot;Water&quot;)
-        {
-            return new Water;
-        }
-        else if (commodity==&quot;Milk&quot;)
-        {
-            return new Milk;
-        }
-        else if (commodity==&quot;CoKe&quot;)
-        {
-            return new CoKe;
-        }
-        else
-        {
-            qDebug()&lt;&lt;&quot;dont have this commodity!&quot;;
-            return nullptr;
-        }
+        return new Water;
     }
+
+protected:
+    ~WaterFactory(){}
+};
+
+class MilkFactory : public Factory
+{
+public:
+    virtual Shop *create()
+    {
+        return new Milk;
+    }
+
+protected:
+    ~MilkFactory(){}
 };</code></pre>
 <pre><code class="c++">int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    ChoseCommodity *c = new ChoseCommodity;
-    Commodity *commodity = nullptr;
+    Factory *factory = nullptr;
+    Shop *shop = nullptr;
 
-    commodity = c-&gt;create(&quot;Water&quot;);
-    commodity-&gt;getPrice();
+    factory = new MilkFactory;
+    shop = factory-&gt;create();
+    shop-&gt;commodity();
 
-    commodity = c-&gt;create(&quot;Milk&quot;);
-    commodity-&gt;getPrice();
-
-    commodity = c-&gt;create(&quot;CoKe&quot;);
-    commodity-&gt;getPrice();
+    factory = new WaterFactory;
+    shop = factory-&gt;create();
+    shop-&gt;commodity();
 
     return a.exec();
 }
 </code></pre>
-<p><img src="C:%5CUsers%5Cl9776%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1588581388356.png" srcset="/img/loading.gif" alt="1588581388356"></p>
+<p><img src="C:%5CUsers%5Cl9776%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1588589709274.png" srcset="/img/loading.gif" alt="1588589709274"></p>
 
             <hr>
           </div>
@@ -446,7 +445,7 @@ public:
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "简单工厂模式 Simple Factory Pattern&nbsp;",
+        "工厂模式 Factory Method Pattern&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

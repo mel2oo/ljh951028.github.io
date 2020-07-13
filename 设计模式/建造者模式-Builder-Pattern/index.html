@@ -15,7 +15,7 @@
   <meta name="description" content>
   <meta name="author" content="Li Junhao">
   <meta name="keywords" content="Windows,Kernel,Qt,Security">
-  <title>归档 ~ God mercy me</title>
+  <title>建造者模式 Builder Pattern ~ God mercy me</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
@@ -36,7 +36,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -115,6 +115,41 @@
             </span>
 
             
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期三, 十月 16日 2019, 3:13 下午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    765 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      3 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
           </div>
 
           
@@ -125,104 +160,180 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 13 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/Security/IRP-Description/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">IRP Description</span>
-      <span style="float: right;">07-09</span>
-    </a>
-  
-    
-    <a href="/Security/InfinityHook/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">InfinityHook</span>
-      <span style="float: right;">02-13</span>
-    </a>
-  
-    
-      
-      <p class="h5">2019</p>
-    
-    <a href="/MQTT/MQTT-开发基础/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MQTT 开发基础</span>
-      <span style="float: right;">12-05</span>
-    </a>
-  
-    
-    <a href="/Network/MQTT-协议-3-1-1/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MQTT 协议 3.1.1</span>
-      <span style="float: right;">11-05</span>
-    </a>
-  
-    
-    <a href="/Network/MQTT-协议-5-0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MQTT 协议 5.0</span>
-      <span style="float: right;">11-05</span>
-    </a>
-  
-    
-    <a href="/设计模式/策略模式-Strategy-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">策略模式 Strategy Pattern</span>
-      <span style="float: right;">10-17</span>
-    </a>
-  
-    
-    <a href="/设计模式/建造者模式-Builder-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">建造者模式 Builder Pattern</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-    
-    <a href="/设计模式/抽象工厂模式-Abstract-Factory/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">抽象工厂模式 Abstract Factory</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-    
-    <a href="/设计模式/工厂模式-Factory-Method-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">工厂模式 Factory Method Pattern</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-    
-    <a href="/设计模式/简单工厂模式-Simple-Factory-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">简单工厂模式 Simple Factory Pattern</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-</div>
 
-  <nav aria-label="index posts navigation">
-    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fas fa-angle-double-right"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
-      ele.href += '#board';
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>造者模式(Builder Pattern)：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
+<p>建造者模式是一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节。建造者模式属于对象创建型模式。根据中文翻译的不同，建造者模式又可以称为生成器模式。</p>
+<h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ul>
+<li>在建造者模式中， <strong>客户端不必知道产品内部组成的细节，将产品本身与产品的创建过程解耦，使得相同的创建过程可以创建不同的产品对象。</strong></li>
+<li>每一个具体建造者都相对独立，而与其他的具体建造者无关，因此可以很方便地替换具体建造者或增加新的具体建造者， <strong>用户使用不同的具体建造者即可得到不同的产品对象</strong> 。</li>
+<li><strong>可以更加精细地控制产品的创建过程</strong> 。将复杂产品的创建步骤分解在不同的方法中，使得创建过程更加清晰，也更方便使用程序来控制创建过程。</li>
+<li><strong>增加新的具体建造者无须修改原有类库的代码，指挥者类针对抽象建造者类编程，系统扩展方便，符合“开闭原则”。</strong></li>
+</ul>
+<h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><ul>
+<li>建造者模式所创建的产品一般具有较多的共同点，其组成部分相似，如果产品之间的差异性很大，则不适合使用建造者模式，因此其使用范围受到一定的限制。</li>
+<li>如果产品的内部变化复杂，可能会导致需要定义很多具体建造者类来实现这种变化，导致系统变得很庞大。</li>
+</ul>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>在很多游戏软件中，地图包括天空、地面、背景等组成部分，人物角色包括人体、服装、装备等组成部分，可以使用建造者模式对其进行设计，通过不同的具体建造者创建不同类型的地图或人物。</p>
+<h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><pre><code class="c++">class Product
+{
+public:
+    Product(){}
+    ~Product(){}
+
+    void setA(QString A) {
+        this-&gt;m_A = A;
     }
-  </script>
 
+    void setB(QString B) {
+        this-&gt;m_B = B;
+    }
 
-              </div>
-            </div>
+    void setC(QString C) {
+        this-&gt;m_C = C;
+    }
+
+    void show(){
+        qDebug()&lt;&lt;m_A&lt;&lt;endl
+               &lt;&lt;m_B&lt;&lt;endl
+              &lt;&lt;m_C;
+    }
+
+private:
+    QString m_A;
+    QString m_B;
+    QString m_C;
+};
+
+class AbstractBuilder{
+public:
+    AbstractBuilder(){}
+    virtual ~AbstractBuilder(){}
+
+    virtual void createProduct() = 0;
+    virtual void buildPartA(QString param) = 0;
+    virtual void buildPartB(QString param) = 0;
+    virtual void buildPartC(QString param) = 0;
+
+    virtual Product* getProduct() = 0;
+};
+
+class Builder: public AbstractBuilder{
+public:
+    Builder(){}
+    ~Builder(){}
+
+    void createProduct() {
+        m_product = new Product;
+    }
+
+    void buildPartA(QString param) {
+        m_product-&gt;setA(param);
+    }
+
+    void buildPartB(QString param) {
+        m_product-&gt;setB(param);
+    }
+
+    void buildPartC(QString param) {
+        m_product-&gt;setC(param);
+    }
+
+    Product* getProduct() {
+        return m_product;
+    }
+
+private:
+    Product* m_product;
+
+};
+
+class Director
+{
+public:
+    Director(AbstractBuilder* builder) {
+        m_builder = builder;
+    }
+    ~Director() {}
+
+    void construct() {
+        if(!m_builder)
+            return;
+        m_builder-&gt;buildPartA(&quot;A&quot;);
+        m_builder-&gt;buildPartB(&quot;B&quot;);
+        m_builder-&gt;buildPartC(&quot;C&quot;);
+    }
+
+private:
+    AbstractBuilder* m_builder;
+};</code></pre>
+<pre><code class="c++">    Builder *builder = new Builder;
+    Director *director = new Director(builder);
+
+    builder-&gt;createProduct();
+    director-&gt;construct();
+
+    Product *product = builder-&gt;getProduct();
+    product-&gt;show();</code></pre>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/C++">C++</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -301,6 +412,11 @@
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
@@ -341,7 +457,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "建造者模式 Builder Pattern&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

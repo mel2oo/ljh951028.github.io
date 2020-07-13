@@ -15,7 +15,7 @@
   <meta name="description" content>
   <meta name="author" content="Li Junhao">
   <meta name="keywords" content="Windows,Kernel,Qt,Security">
-  <title>归档 ~ God mercy me</title>
+  <title>IRP Description ~ God mercy me</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
@@ -36,7 +36,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -115,6 +115,41 @@
             </span>
 
             
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期四, 七月 9日 2020, 10:30 上午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    131 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      1 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
           </div>
 
           
@@ -125,104 +160,68 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="Widnows-Kernel-I-O-request-packets"><a href="#Widnows-Kernel-I-O-request-packets" class="headerlink" title="Widnows Kernel I/O request packets"></a>Widnows Kernel I/O request packets</h1><h2 id="0x01-I-O管理器"><a href="#0x01-I-O管理器" class="headerlink" title="0x01 I/O管理器"></a>0x01 I/O管理器</h2><p>Windows I/O管理器为系统内核模式下提供一致的数据流接口，从上层发送下来的请求数据包会按照统一的格式封装成为一个IRP数据包，经过各类过滤层，文件系统，中间层最终流到最底层。理解I/O管理器中IRP的工作原理对于理解Windows内核有很重要的意义。因为所有的请求调用无非都是数据包的传递。</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
                 
-
-<div class="list-group">
-  <p class="h4">共计 13 篇文章</p>
-  <hr>
-  
-    
-      
-      <p class="h5">2020</p>
-    
-    <a href="/Security/IRP-Description/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">IRP Description</span>
-      <span style="float: right;">07-09</span>
-    </a>
-  
-    
-    <a href="/Security/InfinityHook/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">InfinityHook</span>
-      <span style="float: right;">02-13</span>
-    </a>
-  
-    
-      
-      <p class="h5">2019</p>
-    
-    <a href="/MQTT/MQTT-开发基础/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MQTT 开发基础</span>
-      <span style="float: right;">12-05</span>
-    </a>
-  
-    
-    <a href="/Network/MQTT-协议-3-1-1/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MQTT 协议 3.1.1</span>
-      <span style="float: right;">11-05</span>
-    </a>
-  
-    
-    <a href="/Network/MQTT-协议-5-0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MQTT 协议 5.0</span>
-      <span style="float: right;">11-05</span>
-    </a>
-  
-    
-    <a href="/设计模式/策略模式-Strategy-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">策略模式 Strategy Pattern</span>
-      <span style="float: right;">10-17</span>
-    </a>
-  
-    
-    <a href="/设计模式/建造者模式-Builder-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">建造者模式 Builder Pattern</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-    
-    <a href="/设计模式/抽象工厂模式-Abstract-Factory/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">抽象工厂模式 Abstract Factory</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-    
-    <a href="/设计模式/工厂模式-Factory-Method-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">工厂模式 Factory Method Pattern</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-    
-    <a href="/设计模式/简单工厂模式-Simple-Factory-Pattern/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">简单工厂模式 Simple Factory Pattern</span>
-      <span style="float: right;">10-16</span>
-    </a>
-  
-</div>
-
-  <nav aria-label="index posts navigation">
-    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fas fa-angle-double-right"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
-      ele.href += '#board';
-    }
-  </script>
-
-
-              </div>
-            </div>
+                  <a class="hover-with-bg" href="/categories/Security">Security</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/-Kernel">-Kernel</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -301,6 +300,11 @@
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
@@ -341,7 +345,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "IRP Description&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
