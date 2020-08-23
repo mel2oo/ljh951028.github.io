@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>ElasticSearch服务部署</title>
+    <link href="/ElasticSearch/ElasticSearch%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/"/>
+    <url>/ElasticSearch/ElasticSearch%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/</url>
+    
+    <content type="html"><![CDATA[<h1 id="ElasticSearch服务部署"><a href="#ElasticSearch服务部署" class="headerlink" title="ElasticSearch服务部署"></a>ElasticSearch服务部署</h1><p>ElasticSearch：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/index.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elasticsearch/reference/7.8/index.html</a></p><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>​        Elasticsearch是一个开源的分布式、RESTful 风格的搜索和数据分析引擎，它的底层是开源库Apache Lucene。</p><p>​        Lucene 可以说是当下最先进、高性能、全功能的搜索引擎库——无论是开源还是私有，但它也仅仅只是一个库。为了充分发挥其功能，你需要使用 Java 并将 Lucene 直接集成到应用程序中。 更糟糕的是，您可能需要获得信息检索学位才能了解其工作原理，因为Lucene 非常复杂。<br>   为了解决Lucene使用时的繁复性，于是Elasticsearch便应运而生。它使用 Java 编写，内部采用 Lucene 做索引与搜索，但是它的目标是使全文检索变得更简单，简单来说，就是对Lucene 做了一层封装，它提供了一套简单一致的 RESTful API 来帮助我们实现存储和检索。</p><p>​        当然，Elasticsearch 不仅仅是 Lucene，并且也不仅仅只是一个全文搜索引擎。 它可以被下面这样准确地形容：</p><ul><li>一个分布式的实时文档存储，每个字段可以被索引与搜索；</li><li>一个分布式实时分析搜索引擎；</li><li>能胜任上百个服务节点的扩展，并支持 PB 级别的结构化或者非结构化数据。</li></ul><p>​        由于Elasticsearch的功能强大和使用简单，维基百科、卫报、Stack Overflow、GitHub等都纷纷采用它来做搜索。现在，Elasticsearch已成为全文搜索领域的主流软件之一。</p><h2 id="部署环境"><a href="#部署环境" class="headerlink" title="部署环境"></a>部署环境</h2><ul><li><p>CentOS 7</p><p>具体ES支持的操作系统版本可以在该网址下对照：<a href="https://www.elastic.co/cn/support/matrix" target="_blank" rel="noopener">https://www.elastic.co/cn/support/matrix</a></p></li></ul><h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><ul><li><p>JDK1.8 </p><p>ES运行需要JAVA环境，我使用的是CentOS 7自带的JDK1.8版本，安装ES前先检查JAVA版本，若未安装JDK请先下载 <a href="http://openjdk.java.net/" target="_blank" rel="noopener">OpenJDK</a> </p></li><li><p>Elasticsearch 7.8.0：数据存储，查询，分析</p><p><a href="https://www.elastic.co/cn/downloads/elasticsearch" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/elasticsearch</a></p></li><li><p>Kinbana 7.8.0：数据可视化web客户端</p><p><a href="https://www.elastic.co/cn/downloads/kibana" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/kibana</a></p></li></ul><p><strong>如果要使用Kibana一定要确保和ES的版本一致</strong></p><h2 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h2><h3 id="Elasticsearch部署"><a href="#Elasticsearch部署" class="headerlink" title="Elasticsearch部署"></a>Elasticsearch部署</h3><ul><li>解压软件</li></ul><pre><code class="sh">$ tar -xzf elasticsearch-7.8.0-linux-x86_64.tar.gz$ cd elasticsearch-7.8.0/</code></pre><ul><li><p>修改配置文件</p><p>vi /config/elasticsearch.yml</p></li></ul><pre><code>cluster.name: switch-es        //ES集群名字，如果是多节点部署会通过集群名字来组合成为一个集群node.name: node-1            //该节点的名字path.data: /usr/local/src/elasticsearch-7.8.0/data    //数据存储位置path.logs: /usr/local/src/elasticsearch-7.8.0/logs    //日志存储位置network.host: 0.0.0.0    //设置0.0.0.0即配置外网ip#http.port: 9200        //端口号cluster.initial_master_nodes: [&quot;node-1&quot;]    初始化节点，单机部署需要与节点的名字一致</code></pre><ul><li><p>启动es服务</p><p>ES服务不能在root权限下启动，所以需要先新建一个普通账户来启动</p><pre><code>$ useradd es                        //新建账户es$ chown -R es elasticsearch-7.8.0     //修改es目录的所属者$ su es                                //切换到es账户下$ ./bin/elasticsearch                //启动es服务 ./bin/elasticsearch -d 后台运行</code></pre></li><li><p>可能遇到的问题</p><p>① <strong>无法通过ip地址访问</strong></p><p>确认配置无误后，关闭防火墙</p><p>② <strong>max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]</strong></p><p>每个进程最大同时打开文件数太小</p><p>修改 /etc/security/limits.conf 文件，增加如下配置，用户退出后重新登录生效</p><pre><code class="bash">* soft nofile 65536* hard nofile 65536</code></pre><p>③ <strong>max number of threads [3818] for user [es] is too low, increase to at least [4096]</strong></p><p>最大线程个数太低</p><p>同上修改 /etc/security/limits.conf 文件，增加如下配置，用户退出后重新登录生效</p><pre><code class="bash">* soft nproc 4096* hard nproc 4096</code></pre><p>④ <strong>max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</strong></p><p>一个进程能拥有的最多的内存区域</p><p>修改 /etc/sysctl.conf 文件，增加如下配置，执行命令「 sysctl -p 」生效</p><pre><code class="bash">vm.max_map_count=262144</code></pre></li><li><p>验证成功</p></li></ul><p><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1596352542238.png" srcset="/img/loading.gif" alt="1596352542238"></p><h3 id="Kibana部署"><a href="#Kibana部署" class="headerlink" title="Kibana部署"></a>Kibana部署</h3><ul><li>解压软件包</li></ul><pre><code class="sh">$ tar -xzf kibana-7.8.0-linux-x86_64.tar.gz$ cd kibana-7.8.0-linux-x86_64/ </code></pre><ul><li><p>修改配置文件</p><p>vi /config/kibana.yml</p></li></ul><pre><code>server.port: 5601            //kibana服务端口server.host: &quot;0.0.0.0&quot;        //配置外网ipelasticsearch.hosts: [&quot;http://localhost:9200&quot;]        //链接es服务器地址</code></pre><ul><li><p>启动Kibana</p><pre><code>./bin/kibana --allow-root</code></pre></li><li><p>验证成功</p><p><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1596352655275.png" srcset="/img/loading.gif" alt="1596352655275"></p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>ElasticSearch</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>-Storage -BigData</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>IRP Description</title>
     <link href="/Security/IRP-Description/"/>
     <url>/Security/IRP-Description/</url>
